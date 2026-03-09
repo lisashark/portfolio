@@ -1,14 +1,758 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lisa's Portfolio</title>
+    <title>Lisa Tu | Business Analyst & Platform Planner</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Noto Sans TC -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom subtle animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-100 selection:text-brand-900">
 
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-xl font-bold tracking-tight text-slate-900">Lisa Tu.</a>
+
+                <div class="hidden md:flex space-x-8">
+
+                    <a href="#skills" class="text-sm font-medium text-slate-500 hover:text-brand-600 transition-colors">
+                        <span class="lang-en">Skills</span>
+                        <span class="lang-zh hidden">專業技能</span>
+                    </a>
+                    <a href="#projects"
+                        class="text-sm font-medium text-slate-500 hover:text-brand-600 transition-colors">
+                        <span class="lang-en">Projects</span>
+                        <span class="lang-zh hidden">專案實績</span>
+                    </a>
+                    <a href="#reports"
+                        class="text-sm font-medium text-slate-500 hover:text-brand-600 transition-colors">
+                        <span class="lang-en">Reports</span>
+                        <span class="lang-zh hidden">洞察報告</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Language Toggle Button -->
+                    <button onclick="toggleLanguage()"
+                        class="flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 transition-colors focus:outline-none">
+                        <i class="ph ph-globe mr-1.5 text-lg"></i>
+                        <span id="lang-toggle-text">中文</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto" id="about">
+        <div class="text-center max-w-3xl mx-auto fade-in-up">
+            <h1
+                class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 !leading-[1.2]">
+                <span class="lang-en">Bridging the gap between <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-600">Marketing,
+                        Design, and Tech.</span></span>
+                <span class="lang-zh hidden">成為<span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-600">行銷、設計與技術</span>的跨領域橋樑</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed lang-en">
+                Hi, I'm Lisa. A Business Analyst & Digital Platform Planner who turns ambiguous
+                requirements into precise, developer-ready blueprints.
+            </p>
+            <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed lang-zh hidden">
+                您好，我是 Lisa。擅長將模糊的商業需求，轉化為可供開發團隊執行的規劃與設計文件。
+            </p>
+
+            <!-- Hashtags -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-50 text-brand-600 border border-brand-100">
+                    <i class="ph ph-stack mr-1.5 text-lg"></i>
+                    <span class="lang-en">#BizTechDesignBridge </span>
+                    <span class="lang-zh hidden">#商業xTechx設計</span>
+                </span>
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-50 text-emerald-600 border border-emerald-100">
+                    <i class="ph ph-lightning mr-1.5 text-lg"></i>
+                    <span class="lang-en">#MarTech</span>
+                    <span class="lang-zh hidden">#行銷科技</span>
+                </span>
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-50 text-purple-600 border border-purple-100">
+                    <i class="ph ph-translate mr-1.5 text-lg"></i>
+                    <span class="lang-en">#RequirementsAnalyzer</span>
+                    <span class="lang-zh hidden">#需求分析與系統規劃</span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tools Section -->
+    <section id="skills" class="py-16 bg-white border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Category 1 -->
+                <div class="fade-in-up delay-100">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 mr-4">
+                            <i class="ph ph-chart-line-up text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">
+                            <span class="lang-en">Analysis & Strategy</span>
+                            <span class="lang-zh hidden">分析與策略規劃</span>
+                        </h3>
+                    </div>
+                    <ul class="space-y-2 text-slate-600 text-sm">
+                        <li class="flex items-center"><i class="ph ph-check text-brand-500 mr-2"></i>
+                            <span class="lang-en">Requirement Analysis & RFP</span>
+                            <span class="lang-zh hidden">需求訪談梳理與 RFP 撰寫</span>
+                        </li>
+                        <li class="flex items-center"><i class="ph ph-check text-brand-500 mr-2"></i>
+                            <span class="lang-en">Advanced Excel (PivotTables)</span>
+                            <span class="lang-zh hidden">進階 Excel (樞紐分析)</span>
+                        </li>
+                        <li class="flex items-center"><i class="ph ph-check text-brand-500 mr-2"></i>
+                            <span class="lang-en">Google Analytics & GTM</span>
+                            <span class="lang-zh hidden">Google Analytics 與 GTM 數據追蹤</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="fade-in-up delay-200">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600 mr-4">
+                            <i class="ph ph-bezier-curve text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">
+                            <span class="lang-en">UX & Design</span>
+                            <span class="lang-zh hidden">體驗與介面設計</span>
+                        </h3>
+                    </div>
+                    <ul class="space-y-2 text-slate-600 text-sm">
+                        <li class="flex items-center"><i class="ph ph-check text-purple-500 mr-2"></i>
+                            <span class="lang-en">Wireframing & User Flows</span>
+                            <span class="lang-zh hidden">Wireframe 繪製與使用者流程</span>
+                        </li>
+                        <li class="flex items-center"><i class="ph ph-check text-purple-500 mr-2"></i>
+                            <span class="lang-en">Figma & Interactive Prototypes</span>
+                            <span class="lang-zh hidden">Figma 與可互動原型設計</span>
+                        </li>
+                        <li class="flex items-center"><i class="ph ph-check text-purple-500 mr-2"></i>
+                            <span class="lang-en">PPT Slide Master Templates</span>
+                            <span class="lang-zh hidden">PPT 專案母片與客製化模板</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="fade-in-up delay-300">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 mr-4">
+                            <i class="ph ph-code text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900">
+                            <span class="lang-en">Tech & Frontend</span>
+                            <span class="lang-zh hidden">技術與前端開發</span>
+                        </h3>
+                    </div>
+                    <ul class="space-y-2 text-slate-600 text-sm">
+                        <li class="flex items-center"><i class="ph ph-check text-emerald-500 mr-2"></i>
+                            <span class="lang-en">HTML, CSS, JavaScript</span>
+                            <span class="lang-zh hidden">HTML, CSS, JavaScript 網頁基礎</span>
+                        </li>
+                        <li class="flex items-center"><i class="ph ph-check text-emerald-500 mr-2"></i>
+                            <span class="lang-en">Vue.js (Self-taught execution)</span>
+                            <span class="lang-zh hidden">Vue.js (專案自學實戰經驗)</span>
+                        </li>
+                        <li class="flex items-center"><i class="ph ph-check text-emerald-500 mr-2"></i>
+                            <span class="lang-en">WordPress CMS</span>
+                            <span class="lang-zh hidden">WordPress 架站與內容管理</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div class="mb-12">
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+                <span class="lang-en">Project Achievements</span>
+                <span class="lang-zh hidden">專案實績</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            <!-- Project 1 -->
+            <div
+                class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col h-full shadow-sm">
+                <div class="relative h-56 sm:h-64 w-full bg-slate-100 overflow-hidden group border-b border-slate-100">
+                    <img src="/assets/images/case01.jpg"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4">
+                        <span
+                            class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-white/95 backdrop-blur-md text-slate-700 shadow-sm uppercase tracking-wider">
+                            <i class="ph ph-robot mr-1.5 text-blue-600 text-sm"></i>
+                            <span class="lang-en">Digital Transformation</span>
+                            <span class="lang-zh hidden">數位轉型</span>
+                        </span>
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-slate-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <span
+                            class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-en">Role:
+                            Project Manager</span>
+                        <span
+                            class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-zh hidden">擔任角色:專案經理</span>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 mb-5">
+                        <span class="lang-en">Automated Online Trial Platform</span>
+                        <span class="lang-zh hidden">自動化線上試用平台開發</span>
+                    </h3>
+                    <div class="space-y-4 flex-grow">
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 bg-rose-50 text-rose-700 text-xs font-bold rounded mb-1">
+                                <span class="lang-en">Challenge</span><span class="lang-zh hidden">挑戰</span>
+                            </span>
+                            <p class="text-sm text-slate-600 lang-en">Physical workshops were severely limiting lead
+                                generation due to resource constraints and heavy manual labor for the team.</p>
+                            <p class="text-sm text-slate-600 lang-zh hidden">實體工作坊因資源限制，能開的場次有限，且耗費同仁備課工時，整體成效不彰。</p>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 bg-brand-50 text-brand-700 text-xs font-bold rounded mb-1">
+                                <span class="lang-en">Action</span><span class="lang-zh hidden">行動</span>
+                            </span>
+                            <p class="text-sm text-slate-600 lang-en">Proposed an online pivot. Led the platform
+                                development by designing specs, integrating CRM for automated client
+                                dispatch/notifications, and converting offline materials to reusable digital assets.</p>
+                            <p class="text-sm text-slate-600 lang-zh hidden">主動爭取轉為線上試用。主導平台開發、設計規格，並與工程師串接 CRM
+                                達成業務通知自動化，將實體內容轉為數位教材。</p>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded mb-1">
+                                <span class="lang-en">Result</span><span class="lang-zh hidden">成果</span>
+                            </span>
+                            <p class="text-sm text-slate-600 font-medium lang-en">Successfully launched the platform,
+                                <span class="text-emerald-600">increasing new client leads by 400%</span> while
+                                permanently freeing up critical operational manpower.
+                            </p>
+                            <p class="text-sm text-slate-600 font-medium lang-zh hidden">成功推動平台上線，讓來客量大幅<span
+                                    class="text-emerald-600">成長 400%</span>，且徹底釋放了原先沈重的活動人力負擔。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div
+                class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col h-full shadow-sm group">
+                <!-- Image Side (Wrapped in Anchor Tag for Clickability) -->
+                <a href="https://www.bankpro.com.tw" target="_blank"
+                    class="relative block h-56 sm:h-64 w-full bg-slate-100 overflow-hidden border-b border-slate-100 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
+                        alt="Website Code and Preview"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+
+                    <div class="absolute top-4 left-4">
+                        <span
+                            class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-white/95 backdrop-blur-md text-slate-700 shadow-sm uppercase tracking-wider">
+                            <i class="ph ph-code-block mr-1.5 text-emerald-600 text-sm"></i>
+                            <span class="lang-en">Self-driven learning of Web Technologies</span>
+                            <span class="lang-zh hidden">自學網頁技術</span>
+                        </span>
+                    </div>
+
+                    <!-- Enhanced Hover Overlay with Click to Visit Link -->
+                    <div
+                        class="absolute inset-0 bg-slate-900/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none gap-3">
+                        <div>
+                            <span
+                                class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-en">Role:Project
+                                Manager&Web Developer</span>
+                            <span
+                                class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-zh hidden">角色：專案經理&網頁開發者</span>
+                        </div>
+                        <div
+                            class="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span
+                                class="text-white text-sm font-bold px-4 py-2 bg-brand-600/90 shadow-lg rounded-lg backdrop-blur-sm flex items-center lang-en">
+                                <i class="ph ph-arrow-square-out mr-1.5 text-lg"></i> Click to Visit
+                            </span>
+                            <span
+                                class="text-white text-sm font-bold px-4 py-2 bg-brand-600/90 shadow-lg rounded-lg backdrop-blur-sm flex items-center lang-zh hidden">
+                                <i class="ph ph-arrow-square-out mr-1.5 text-lg"></i> 點擊導連
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Text Side -->
+                <div class="p-6 sm:p-8 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 mb-5">
+                        <span class="lang-en">Corporate Website Revamp</span>
+                        <span class="lang-zh hidden">企業官網重建專案</span>
+                    </h3>
+                    <div class="space-y-4 flex-grow">
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 bg-rose-50 text-rose-700 text-xs font-bold rounded mb-1">
+                                <span class="lang-en">Challenge</span><span class="lang-zh hidden">挑戰</span>
+                            </span>
+                            <p class="text-sm text-slate-600 lang-en">Project halted due to zero internal engineering
+                                support and new strict corporate security policies banning third-party CMS (like
+                                WordPress).</p>
+                            <p class="text-sm text-slate-600 lang-zh hidden">專案面臨無內部工程師支援，且母公司發布資安新規禁用第三方開源應用 (如
+                                WordPress)，導致專案被迫停擺。</p>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 bg-brand-50 text-brand-700 text-xs font-bold rounded mb-1">
+                                <span class="lang-en">Action</span><span class="lang-zh hidden">行動</span>
+                            </span>
+                            <p class="text-sm text-slate-600 lang-en">Embraced the gap. Handled PM duties by day
+                                (wireframes, stakeholder alignment) and undertook high-intensity self-learning of
+                                JS/Vue.js by night to collaborate seamlessly with an external tech consultant.</p>
+                            <p class="text-sm text-slate-600 lang-zh hidden">展現強大適應力。白天負責與各部門確認內容並繪製
+                                Wireframe；利用下班時間高強度自學 JS 與 Vue.js，無縫對接外部技術顧問。</p>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded mb-1">
+                                <span class="lang-en">Result</span><span class="lang-zh hidden">成果</span>
+                            </span>
+                            <p class="text-sm text-slate-600 font-medium lang-en">Overcame the technical chasm and
+                                successfully launched the secure, custom-built website on schedule.Also, achieved
+                                significant SEO results for the core product.</p>
+                            <p class="text-sm text-slate-600 font-medium lang-zh hidden">
+                                成功克服了技術斷層，在符合母公司嚴格資安規範的前提下，並替主產品獲得良好SEO成效。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div
+                class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col h-full shadow-sm">
+                <div class="relative h-56 sm:h-64 w-full bg-slate-100 overflow-hidden group border-b border-slate-100">
+                    <img src="\assets\images\case03.jpg" alt="E-Commerce Wireframes"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4">
+                        <span
+                            class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-white/95 backdrop-blur-md text-slate-700 shadow-sm uppercase tracking-wider">
+                            <i class="ph ph-shopping-cart mr-1.5 text-purple-600 text-sm"></i>
+                            <span class="lang-en">E-Commerce Strategy</span>
+                            <span class="lang-zh hidden">電商平台規劃</span>
+                        </span>
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-slate-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <span
+                            class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-en">Role:
+                            Platform Planner </span>
+                        <span
+                            class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-zh hidden">擔任角色：平台規劃師</span>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">
+                        <span class="lang-en">Chain Brand E-Commerce Platform</span>
+                        <span class="lang-zh hidden">連鎖品牌電商網站建置</span>
+                    </h3>
+
+
+                    <div class="space-y-4 flex-grow">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-2 flex-shrink-0 text-lg"></i>
+                                <p class="text-sm text-slate-600">
+                                    <span class="lang-en"><strong>UX & System Analysis:</strong> Verified data fields
+                                        and business logic. Designed user experience flows, provided feature
+                                        recommendations, and delivered comprehensive frontend wireframes and UI
+                                        flows.</span>
+                                    <span
+                                        class="lang-zh hidden"><strong>體驗與系統分析：</strong>確認資料欄位與商務邏輯，設計體驗流程與功能建議，並產出完整的前台
+                                        Wireframe 與 UI Flow。</span>
+                                </p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-2 flex-shrink-0 text-lg"></i>
+                                <p class="text-sm text-slate-600">
+                                    <span class="lang-en"><strong>Cross-functional Collaboration:</strong> Communicated
+                                        closely with front-end and back-end engineers to validate business logic
+                                        feasibility, and coordinated with designers to produce final UI mockups.</span>
+                                    <span
+                                        class="lang-zh hidden"><strong>跨部門協作：</strong>與前後端工程師密切討論商務邏輯之可行性，並與設計師溝通協調以產出最終
+                                        Mockup。</span>
+                                </p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-2 flex-shrink-0 text-lg"></i>
+                                <p class="text-sm text-slate-600">
+                                    <span class="lang-en"><strong>Core Feature Planning:</strong> Planned
+                                        multi-dimensional product specs, cross-business unit member integration,
+                                        automated email notifications, themed discount modules, credit card binding, and
+                                        shopping cart optimization.</span>
+                                    <span class="lang-zh hidden"><strong>核心功能規劃：</strong>涵蓋多維度商品規格、多事業體會員整合、Email
+                                        自動通知信、主題特價模組、信用卡綁卡及購物車優化等。</span>
+                                </p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-2 flex-shrink-0 text-lg"></i>
+                                <p class="text-sm text-slate-600">
+                                    <span class="lang-en"><strong>Data Tracking:</strong> Executed Google Tag Manager
+                                        (GTM) setup and Google Analytics (GA) report data testing.</span>
+                                    <span class="lang-zh hidden"><strong>數據追蹤：</strong>負責 GTM 追蹤設定與 GA 報表數據測試。</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div
+                class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col h-full shadow-sm group">
+                <div class="relative h-56 sm:h-64 w-full bg-slate-100 overflow-hidden border-b border-slate-100">
+                    <img src="\assets\images\case04.jpg" alt="Logistics System Platform"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4">
+                        <span
+                            class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-white/95 backdrop-blur-md text-slate-700 shadow-sm uppercase tracking-wider">
+                            <i class="ph ph-truck mr-1.5 text-blue-600 text-sm"></i>
+                            <span class="lang-en">Logistics System</span>
+                            <span class="lang-zh hidden">物流系統</span>
+                        </span>
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-slate-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <span
+                            class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-en">Role:
+                            UX Designer </span>
+                        <span
+                            class="text-white text-sm font-medium px-4 py-2 bg-black/40 rounded-lg backdrop-blur-sm lang-zh hidden">擔任角色：使用者體驗設計師</span>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 flex-grow flex flex-col">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                        <span class="lang-en">In-house Logistics System Platform</span>
+                        <span class="lang-zh hidden">自有物流系統介面規劃</span>
+                    </h3>
+
+
+                    <div class="space-y-4 flex-grow">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-3 flex-shrink-0 text-xl"></i>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    <span class="lang-en"><strong>Multi-Platform Planning:</strong> Designed and planned
+                                        comprehensive Web, APP, and Windows applications tailored to specific
+                                        operational scenarios and user roles.</span>
+                                    <span class="lang-zh hidden"><strong>多端平台規劃：</strong>針對不同使用者角色與作業情境，分別規劃並設計 Web
+                                        (網頁端)、APP (行動端) 與 Windows (桌面端) 應用程式。</span>
+                                </p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-3 flex-shrink-0 text-xl"></i>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    <span class="lang-en"><strong>Core Logistics Modules:</strong> Analyzed complex
+                                        business logic to map out core features including Warehouse Management, freight
+                                        delivery tracking, and route management.</span>
+                                    <span class="lang-zh hidden"><strong>核心物流模組：</strong>深度梳理物流業務邏輯，規劃涵蓋倉儲管理
+                                        (WMS)、貨物配送追蹤與路線最佳化管理 (TMS) 等核心功能。</span>
+                                </p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check-circle text-brand-500 mt-0.5 mr-3 flex-shrink-0 text-xl"></i>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    <span class="lang-en"><strong>Role-based UX & Logic:</strong> Defined precise system
+                                        permissions and data interactions, ensuring seamless operations for warehouse
+                                        staff, drivers, and administrators across different devices.</span>
+                                    <span
+                                        class="lang-zh hidden"><strong>角色權限與體驗：</strong>確保站所人員、司機與管理端在不同裝置上皆能獲得流暢的操作體驗，並精準定義各角色的系統權限與資料交互邏輯。</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Sentiment Analysis Reports Section -->
+    <section id="reports" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-6">
+                    <span class="lang-en">Sentiment Analysis & Data Insights</span>
+                    <span class="lang-zh hidden">輿情分析與數據洞察</span>
+                </h2>
+
+                <!-- Methodology Description -->
+                <div
+                    class="w-full text-slate-600 leading-relaxed text-sm sm:text-base border-l-4 border-brand-500 pl-5 py-3 bg-brand-50/40 rounded-r-xl shadow-sm">
+                    <p class="lang-en">
+                        Faced with diverse industry demands, I processed <strong>tens of thousands of online text
+                            records</strong>, independently executing data cleaning and tagging. Leveraging <strong>R
+                            language and Excel</strong>, I conducted in-depth qualitative and quantitative analyses,
+                        transforming complex data logic into readable visual charts and actionable commercial insights.
+                    </p>
+                    <p class="lang-zh hidden">
+                        面對多元產業與市場的分析需求，我曾負責處理<strong>破數萬筆的網路文本</strong>，獨立完成資料清洗與標籤化。運用 <strong>R 語言與 Excel</strong>
+                        進行深度的質化與量化分析，最終將複雜的數據邏輯轉化為易讀的視覺化圖表與商業洞察報告。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Report Links List -->
+            <div class="flex flex-col gap-4">
+
+                <!-- Report 1 -->
+                <a href="https://www.social-lab.cc/2016/05/industry-report/%E6%B4%9E%E5%AF%9F%E5%A0%B1%E5%91%8A%E3%80%8B2016%E9%9B%BB%E5%AD%90%E6%94%AF%E4%BB%98%E5%8F%A3%E7%A2%91%E8%AA%BF%E6%9F%A5%EF%BC%8D%E5%BB%A0%E5%95%86%E7%99%BE%E5%AE%B6%E7%88%AD%E9%B3%B4%EF%BC%8C/"
+                    target="_blank"
+                    class="group flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all bg-slate-50 hover:bg-white">
+                    <div class="flex items-start sm:items-center gap-4 mb-3 sm:mb-0">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-chart-bar text-xl"></i>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-slate-900 font-semibold group-hover:text-brand-600 transition-colors text-base sm:text-lg">
+                                <span class="lang-en">2016 E-Payment Sentiment Survey — A Crowded Market & Hesitant
+                                    Consumers</span>
+                                <span class="lang-zh hidden">2016電子支付口碑調查 — 廠商百家爭鳴，消費者觀望</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-slate-400 text-sm font-medium whitespace-nowrap">
+                        <i class="ph ph-calendar-blank mr-1.5"></i> 2016.05.24
+                        <i
+                            class="ph ph-arrow-up-right ml-4 opacity-0 group-hover:opacity-100 group-hover:text-brand-600 transition-all transform group-hover:-translate-y-1 group-hover:translate-x-1 text-lg"></i>
+                    </div>
+                </a>
+
+                <!-- Report 2 -->
+                <a href="https://www.social-lab.cc/2016/11/industry-zone/health-related/%E6%B4%9E%E5%AF%9F%E5%A0%B1%E5%91%8A%E3%80%8B%E3%80%8C2016-%E4%BF%9D%E9%9A%AA%E7%94%A2%E6%A5%AD%E5%8F%A3%E7%A2%91%E8%AA%BF%E6%9F%A5%E3%80%8D%E6%8A%95%E4%BF%9D%E9%9A%AA%E5%B9%B4%E9%BD%A1%E8%88%87/"
+                    target="_blank"
+                    class="group flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all bg-slate-50 hover:bg-white">
+                    <div class="flex items-start sm:items-center gap-4 mb-3 sm:mb-0">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-shield-check text-xl"></i>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-slate-900 font-semibold group-hover:text-brand-600 transition-colors text-base sm:text-lg">
+                                <span class="lang-en">2016 Insurance Industry Analysis — Age Demographics & Popular
+                                    Policies</span>
+                                <span class="lang-zh hidden">2016保險產業口碑調查 — 投保險年齡與熱門險種分析</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-slate-400 text-sm font-medium whitespace-nowrap">
+                        <i class="ph ph-calendar-blank mr-1.5"></i> 2016.11.12
+                        <i
+                            class="ph ph-arrow-up-right ml-4 opacity-0 group-hover:opacity-100 group-hover:text-brand-600 transition-all transform group-hover:-translate-y-1 group-hover:translate-x-1 text-lg"></i>
+                    </div>
+                </a>
+
+                <!-- Report 3 -->
+                <a href="https://www.social-lab.cc/2016/12/industry-report/%E6%B4%9E%E5%AF%9F%E5%A0%B1%E5%91%8A%E3%80%8B%E3%80%8E%E9%84%89%E6%B0%91%E5%90%88%E8%B3%BC%E5%A4%A7%E8%A7%A3%E5%AF%86%E3%80%8F-%E4%B8%80%E5%B9%B4330%E8%90%AC%E4%BA%BA%E6%AC%A1%E9%9F%BF%E6%87%89/"
+                    target="_blank"
+                    class="group flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all bg-slate-50 hover:bg-white">
+                    <div class="flex items-start sm:items-center gap-4 mb-3 sm:mb-0">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-users text-xl"></i>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-slate-900 font-semibold group-hover:text-brand-600 transition-colors text-base sm:text-lg">
+                                <span class="lang-en">"Netizen Group Buying" Decoded — 3.3M Annual Participants</span>
+                                <span class="lang-zh hidden">『鄉民合購大解密』 一年330萬人次響應，服飾配件夯！</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-slate-400 text-sm font-medium whitespace-nowrap">
+                        <i class="ph ph-calendar-blank mr-1.5"></i> 2016.12.29
+                        <i
+                            class="ph ph-arrow-up-right ml-4 opacity-0 group-hover:opacity-100 group-hover:text-brand-600 transition-all transform group-hover:-translate-y-1 group-hover:translate-x-1 text-lg"></i>
+                    </div>
+                </a>
+
+                <!-- Report 4 -->
+                <a href="https://www.social-lab.cc/2017/03/industry-zone/health-related/%E6%B4%9E%E5%AF%9F%E5%A0%B1%E5%91%8A%E3%80%8B%E4%B8%80%E6%8E%A2%E3%80%8A%E6%9C%88%E4%BA%AE%E6%9D%AF%E3%80%8B%E6%88%90%E5%8A%9F%E5%8B%9F%E8%B3%87%E7%9A%84%E7%A4%BE%E7%BE%A4%E8%84%88%E7%B5%A1-%E7%A4%BE/"
+                    target="_blank"
+                    class="group flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all bg-slate-50 hover:bg-white">
+                    <div class="flex items-start sm:items-center gap-4 mb-3 sm:mb-0">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-trend-up text-xl"></i>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-slate-900 font-semibold group-hover:text-brand-600 transition-colors text-base sm:text-lg">
+                                <span class="lang-en">The Social Context of "Menstrual Cup" Crowdfunding Success</span>
+                                <span class="lang-zh hidden">一探《月亮杯》成功募資的社群脈絡 — 社會觀點的轉變 X 行銷的立基市場</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-slate-400 text-sm font-medium whitespace-nowrap">
+                        <i class="ph ph-calendar-blank mr-1.5"></i> 2017.03.10
+                        <i
+                            class="ph ph-arrow-up-right ml-4 opacity-0 group-hover:opacity-100 group-hover:text-brand-600 transition-all transform group-hover:-translate-y-1 group-hover:translate-x-1 text-lg"></i>
+                    </div>
+                </a>
+
+                <!-- Report 5 -->
+                <a href="https://www.social-lab.cc/2018/01/industry-report/%E6%B4%9E%E5%AF%9F%E5%A0%B1%E5%91%8A%E3%80%8B%E5%AC%B0%E5%B9%BC%E5%85%92%E7%94%A8%E5%93%81%E5%8F%A3%E7%A2%91%E5%A4%A7%E8%AA%BF%E6%9F%A5-%E2%94%80-%E5%B0%BF%E5%B8%83%E5%8F%A3%E7%A2%91%E6%B4%9E%E5%AF%9F/"
+                    target="_blank"
+                    class="group flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all bg-slate-50 hover:bg-white">
+                    <div class="flex items-start sm:items-center gap-4 mb-3 sm:mb-0">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-baby text-xl"></i>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-slate-900 font-semibold group-hover:text-brand-600 transition-colors text-base sm:text-lg">
+                                <span class="lang-en">Baby Products Sentiment Survey — Diaper Insights & Parent
+                                    Demographics</span>
+                                <span class="lang-zh hidden">嬰幼兒用品口碑大調查 — 尿布口碑洞察與父親母親族群解析</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-slate-400 text-sm font-medium whitespace-nowrap">
+                        <i class="ph ph-calendar-blank mr-1.5"></i> 2018.01.02
+                        <i
+                            class="ph ph-arrow-up-right ml-4 opacity-0 group-hover:opacity-100 group-hover:text-brand-600 transition-all transform group-hover:-translate-y-1 group-hover:translate-x-1 text-lg"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-6 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+            <a href="mailto:dydy1130@hotmail.com"
+                class="text-slate-400 hover:text-white transition-colors text-base sm:text-lg font-medium tracking-wide">
+                <span class="lang-en">Email: dydy1130@hotmail.com</span>
+                <span class="lang-zh hidden">聯絡信箱：dydy1130@hotmail.com</span>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Language Toggle Script -->
+    <script>
+        function toggleLanguage() {
+            const isEnglish = document.documentElement.lang === 'en';
+            document.documentElement.lang = isEnglish ? 'zh' : 'en';
+
+            const enElements = document.querySelectorAll('.lang-en');
+            const zhElements = document.querySelectorAll('.lang-zh');
+            const toggleText = document.getElementById('lang-toggle-text');
+
+            if (isEnglish) {
+                // 切換至中文
+                enElements.forEach(el => el.classList.add('hidden'));
+                zhElements.forEach(el => el.classList.remove('hidden'));
+                toggleText.innerText = 'EN'; // 按鈕顯示下一個可以切換的語言
+            } else {
+                // 切換至英文
+                zhElements.forEach(el => el.classList.add('hidden'));
+                enElements.forEach(el => el.classList.remove('hidden'));
+                toggleText.innerText = '中文'; // 按鈕顯示下一個可以切換的語言
+            }
+        }
+    </script>
 </body>
 
 </html>
